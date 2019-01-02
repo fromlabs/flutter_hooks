@@ -116,6 +116,15 @@ part 'hooks.dart';
 /// If we were to pass a variable as `duration` instead of a constant, then on value change the [AnimationController] will be updated.
 @immutable
 abstract class Hook<R> {
+  /// The [BuildContext] of to the currently building [HookWidget].
+  ///
+  /// [context] can only be accessed within the scope of [HookWidget.build].
+  static BuildContext get context {
+    assert(HookElement._currentContext != null,
+        '`Hook.context` can only be called from the build method of HookWidget');
+    return HookElement._currentContext;
+  }
+
   /// Allows subclasses to have a `const` constructor
   const Hook({this.keys});
 

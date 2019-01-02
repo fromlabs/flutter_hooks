@@ -402,7 +402,7 @@ final colorTween = useValueChanged(
   AlwaysStoppedAnimation(color);
 ```
 
-- useAnimationController, useStreamController, useSingleTickerProvider
+- useAnimationController, useStreamController, useSingleTickerProvider, useValueNotifier
 
 A set of hooks that handles the whole life-cycle of an object. These hooks will take care of both creating, disposing and updating the object.
 

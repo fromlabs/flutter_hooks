@@ -1,3 +1,9 @@
+## 0.2.1:
+
+- Expose `BuildContext` of the currently builder `HookWidget` through `Hook.context`.
+
+- added `useValueNotifier`, similar to `useState` but without listening to the value.
+
 ## 0.2.0:
 
 - Made all existing hooks as static functions, and removed `HookContext`. The migration is as followed:

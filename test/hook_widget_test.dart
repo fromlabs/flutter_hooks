@@ -27,6 +27,28 @@ void main() {
     reset(didUpdateHook);
   });
 
+  testWidgets(
+      'BuildContext of HookWidget is accessible within build from Hook.context',
+      (tester) async {
+    BuildContext hookContext;
+
+    await tester.pumpWidget(HookBuilder(builder: (context) {
+      hookContext = Hook.context;
+      return Container();
+    }));
+
+    final context = tester.firstElement(find.byType(HookBuilder));
+
+    expect(context, hookContext);
+  });
+  testWidgets('BuildContext of HookWidget is not accessible outside build',
+      (tester) async {
+    await tester.pumpWidget(HookBuilder(builder: (context) {
+      return Container();
+    }));
+    expect(() => Hook.context, throwsAssertionError);
+  });
+
   testWidgets('hooks can be disposed independently with keys', (tester) async {
     List keys;
     List keys2;

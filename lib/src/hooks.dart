@@ -121,13 +121,6 @@ T useMemoized<T>(T Function() valueBuilder, [List keys = const <dynamic>[]]) {
   ));
 }
 
-/// Obtain the [BuildContext] of the currently builder [HookWidget].
-BuildContext useContext() {
-  assert(HookElement._currentContext != null,
-      '`useContext` can only be called from the build method of HookWidget');
-  return HookElement._currentContext;
-}
-
 class _MemoizedHook<T> extends Hook<T> {
   final T Function() valueBuilder;
 
@@ -782,12 +775,9 @@ class _StreamControllerHookState<T>
   }
 }
 
-// TODO: update documentation
-/// Creates a [StreamController] automatically disposed.
+/// Creates a [ValueNotifier] automatically disposed.
 ///
-/// See also:
-///   * [StreamController]
-///   * [useStream]
+/// As opposed to [useState], [useValueNotifier] do not listen to the value.
 ValueNotifier<T> useValueNotifier<T>([T intialData, List keys]) {
   return Hook.use(_ValueNotifierHook(
     initialData: intialData,
